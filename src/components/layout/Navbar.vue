@@ -3,6 +3,7 @@ import { Icon } from "@iconify/vue";
 import { ref } from "vue";
 
 const isMenuOpen = ref(false);
+
 const menu = ref([
   { name: "Services", href: "#services" },
   { name: "Skills", href: "#skills" },
@@ -30,72 +31,101 @@ const toggleDarkMode = () => {
     html.classList.add("dark");
     localStorage.setItem("theme", "dark");
   }
-
   isDarkMode.value = !isDarkMode.value;
 };
 </script>
+
 <template>
   <header class="relative z-30">
-    <div class="flex justify-between items-center p-8 lg:px-12 relative z-30">
+    <div class="flex justify-between items-center p-6 lg:p-8 lg:px-12 relative z-30">
+      <!-- Logo -->
       <div class="text-3xl font-bold dark:text-white">LOGO</div>
 
-      <!--Mobile Toggle Button-->
-      <div class="md:hidden z-30">
-        <button
-          class="block focus:outline-none"
-          @click="isMenuOpen = !isMenuOpen"
+      <!-- Right side container -->
+      <div class="flex items-center gap-5 md:gap-8">
+
+        <!-- Mobile: dark toggle + hamburger -->
+        <div class="flex items-center gap-4 md:hidden">
+          <!-- Dark mode toggle (mobile) -->
+          <button @click="toggleDarkMode" class="focus:outline-none">
+            <Icon
+              v-if="!isDarkMode"
+              icon="line-md:moon-filled"
+              class="text-4xl text-primary"
+            />
+            <Icon
+              v-else
+              icon="line-md:sunny-outline"
+              class="text-4xl text-secondary"
+            />
+          </button>
+
+          <!-- Hamburger / Close button -->
+          <button class="focus:outline-none" @click="isMenuOpen = !isMenuOpen">
+            <span v-if="isMenuOpen" class="text-5xl text-white dark:text-white">
+              <Icon icon="ic:baseline-close" />
+            </span>
+            <span v-else class="text-5xl text-white dark:text-white">
+              <Icon icon="ic:round-menu" />
+            </span>
+          </button>
+        </div>
+
+        <!-- Desktop nav + dark toggle -->
+        <nav
+          class="hidden md:flex md:items-center md:gap-8 lg:gap-10"
         >
-          <span
-            v-if="isMenuOpen"
-            class="text-5xl md:text-primary text-white dark:text-white"
-          >
-            <Icon icon="ic:baseline-close" />
-          </span>
-          <span
-            v-else
-            class="text-5xl md:text-primary text-white dark:text-white"
-          >
-            <Icon icon="ic:round-menu" />
-          </span>
-        </button>
+          <ul class="flex items-center gap-6 lg:gap-8">
+            <li v-for="item in menu" :key="item.name">
+              <a
+                :href="item.href"
+                class="block font-bold md:text-lg lg:text-xl text-primary hover:text-secondary dark:text-white dark:hover:text-secondary transition-colors"
+                @click="scrollToSection(item.href)"
+              >
+                {{ item.name }}
+              </a>
+            </li>
+          </ul>
+
+          <!-- Dark mode toggle (desktop) -->
+          <button @click="toggleDarkMode" class="focus:outline-none">
+            <Icon
+              v-if="!isDarkMode"
+              icon="line-md:moon-filled"
+              class="text-4xl lg:text-5xl text-primary"
+            />
+            <Icon
+              v-else
+              icon="line-md:sunny-outline"
+              class="text-4xl lg:text-5xl text-secondary"
+            />
+          </button>
+        </nav>
+
       </div>
-      <!--Navbar Links-->
-      <nav
-        :class="[
-          `fixed inset-0 z-20 flex flex-col items-center justify-center 
-     md:relative md:bg-transparent md:flex md:justify-between md:flex-row
-     ${isMenuOpen ? 'block bg-primary/95 backdrop-blur-md shadow-2xl' : 'hidden'}`,
-        ]"
-      >
-        <ul
-          class="flex flex-col items-center space-y-5 md:flex-row md:space-x-5 md:space-y-0"
-        >
-          <li v-for="item in menu" :key="item.name">
-            <a
-              :href="item.href"
-              class="block transition ease-linear md:text-lg lg:text-xl font-bold text-white md:text-primary hover:text-secondary dark:text-white dark:hover:text-secondary"
-              @click="scrollToSection(item.href)"
-            >
-              {{ item.name }}
-            </a>
-          </li>
-        </ul>
-        <button
-          @click="toggleDarkMode"
-          class="text-white ml-20 z-10 hidden md:block"
-        >
-          <Icon
-            v-if="!isDarkMode"
-            icon="line-md:moon-filled"
-            class="text-5xl text-primary"
-          />
-          <Icon
-            v-else
-            icon="line-md:sunny-outline"
-            class="text-5xl text-secondary"
-          />
-        </button>
-      </nav>
     </div>
+
+    <!-- Mobile full-screen menu -->
+    <nav
+      :class="[
+        'fixed inset-0 z-20 flex flex-col items-center justify-center',
+        'bg-primary/95 backdrop-blur-md shadow-2xl',
+        'transition-opacity duration-300',
+        isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
+        'md:hidden'
+      ]"
+    >
+      <ul class="flex flex-col items-center gap-10 text-2xl">
+        <li v-for="item in menu" :key="item.name">
+          <a
+            :href="item.href"
+            class="font-bold text-white hover:text-secondary transition-colors"
+            @click="scrollToSection(item.href)"
+          >
+            {{ item.name }}
+          </a>
+        </li>
+      </ul>
+    </nav>
   </header>
 </template>
