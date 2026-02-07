@@ -9,7 +9,7 @@ const menu = ref([
   { name: "Why me", href: "#whyme" },
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
-])
+]);
 
 const scrollToSection = (href) => {
   isMenuOpen.value = false;
@@ -19,20 +19,20 @@ const scrollToSection = (href) => {
   }
 };
 
-const isDarkMode = ref(localStorage.getItem('theme') === 'dark');
+const isDarkMode = ref(localStorage.getItem("theme") === "dark");
 
-const toggleDarkMode = ()=>{
+const toggleDarkMode = () => {
   const html = document.documentElement;
-  if(isDarkMode.value){
-    html.classList.remove('dark');
-    localStorage.setItem('theme','light')
+  if (isDarkMode.value) {
+    html.classList.remove("dark");
+    localStorage.setItem("theme", "light");
   } else {
-    html.classList.add('dark');
-    localStorage.setItem('theme','dark')
+    html.classList.add("dark");
+    localStorage.setItem("theme", "dark");
   }
 
-  isDarkMode.value = !isDarkMode.value
-}
+  isDarkMode.value = !isDarkMode.value;
+};
 </script>
 <template>
   <header class="relative z-30">
@@ -61,10 +61,12 @@ const toggleDarkMode = ()=>{
       </div>
       <!--Navbar Links-->
       <nav
-  :class="[
-    `fixed inset-0 z-20 flex flex-col items-center justify-center md:relative md:bg-transparent md:flex md:justify-between md:flex-row ${isMenuOpen ? 'block' : 'hidden'}`
-  ]"
->
+        :class="[
+          `fixed inset-0 z-20 flex flex-col items-center justify-center 
+     md:relative md:bg-transparent md:flex md:justify-between md:flex-row
+     ${isMenuOpen ? 'block bg-primary/95 backdrop-blur-md shadow-2xl' : 'hidden'}`,
+        ]"
+      >
         <ul
           class="flex flex-col items-center space-y-5 md:flex-row md:space-x-5 md:space-y-0"
         >
@@ -78,9 +80,20 @@ const toggleDarkMode = ()=>{
             </a>
           </li>
         </ul>
-        <button @click="toggleDarkMode" class="text-white ml-20 z-10 hidden md:block">
-          <Icon v-if="!isDarkMode" icon="line-md:moon-filled" class="text-5xl text-primary"/>
-          <Icon v-else icon="line-md:sunny-outline" class="text-5xl text-secondary"/>
+        <button
+          @click="toggleDarkMode"
+          class="text-white ml-20 z-10 hidden md:block"
+        >
+          <Icon
+            v-if="!isDarkMode"
+            icon="line-md:moon-filled"
+            class="text-5xl text-primary"
+          />
+          <Icon
+            v-else
+            icon="line-md:sunny-outline"
+            class="text-5xl text-secondary"
+          />
         </button>
       </nav>
     </div>
