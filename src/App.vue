@@ -4,6 +4,7 @@ import { defineAsyncComponent } from 'vue';
 const Navbar = defineAsyncComponent(()=>import('@/components/layout/Navbar.vue'))
 const Hero = defineAsyncComponent(()=>import('@/components/layout/HeroSection.vue'))
 const Counter = defineAsyncComponent(()=>import('@/components/layout/Counter.vue'))
+const Services = defineAsyncComponent(()=>import('@/components/layout/Services.vue'))
 </script>
 
 <template>
@@ -11,6 +12,7 @@ const Counter = defineAsyncComponent(()=>import('@/components/layout/Counter.vue
     <Navbar />
     <Hero />
     <Counter />
+    <Services />
   </div>
   
 </template>
