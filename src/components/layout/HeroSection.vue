@@ -50,7 +50,7 @@
           class="relative m-[30px] w-[280px] h-[350px] md:w-[420px] md:h-[420px] glass-frame"
         >
           <img
-            src="@/assets/images/image.jpeg"
+            src="@/assets/images/image.png"
             alt="Hero Picture"
             class="w-full h-full object-cover block"
             loading="lazy"
