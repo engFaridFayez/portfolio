@@ -1,6 +1,8 @@
 <script setup>
 import { Icon } from "@iconify/vue";
-import { ref } from "vue";
+import { ref,onMounted  } from "vue";
+import darkLogo from "@/assets/images/darkLogo.jpeg";
+import lightLogo from "@/assets/images/lightLogo.jpeg";
 
 const isMenuOpen = ref(false);
 
@@ -33,17 +35,40 @@ const toggleDarkMode = () => {
   }
   isDarkMode.value = !isDarkMode.value;
 };
+
+onMounted(() => {
+  const theme = localStorage.getItem("theme");
+  if (!theme) {
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+    isDarkMode.value = true;
+  } else if (theme === "dark") {
+    document.documentElement.classList.add("dark");
+    isDarkMode.value = true;
+  } else {
+    document.documentElement.classList.remove("dark");
+    isDarkMode.value = false;
+  }
+});
 </script>
 
 <template>
   <header class="relative z-30">
-    <div class="flex justify-between items-center p-6 lg:p-8 lg:px-12 relative z-30">
+    <div
+      class="flex justify-between items-center p-6 lg:p-4 lg:px-12 relative z-30"
+    >
       <!-- Logo -->
-      <div class="text-3xl font-bold dark:text-white">LOGO</div>
+      <div class="text-3xl font-bold">
+        <img
+          style="border-radius: 50%;"
+          :src="isDarkMode ? darkLogo : lightLogo"
+          class="w-[180px] h-[150px] md:w-[150px] md:h-[120px] rounded-4xl"
+          alt="Logo"
+        />
+      </div>
 
       <!-- Right side container -->
       <div class="flex items-center gap-5 md:gap-8">
-
         <!-- Mobile: dark toggle + hamburger -->
         <div class="flex items-center gap-4 md:hidden">
           <!-- Dark mode toggle (mobile) -->
@@ -72,9 +97,7 @@ const toggleDarkMode = () => {
         </div>
 
         <!-- Desktop nav + dark toggle -->
-        <nav
-          class="hidden md:flex md:items-center md:gap-8 lg:gap-10"
-        >
+        <nav class="hidden md:flex md:items-center md:gap-8 lg:gap-10">
           <ul class="flex items-center gap-6 lg:gap-8">
             <li v-for="item in menu" :key="item.name">
               <a
@@ -101,7 +124,6 @@ const toggleDarkMode = () => {
             />
           </button>
         </nav>
-
       </div>
     </div>
 
@@ -111,8 +133,10 @@ const toggleDarkMode = () => {
         'fixed inset-0 z-20 flex flex-col items-center justify-center',
         'bg-primary/95 backdrop-blur-md shadow-2xl',
         'transition-opacity duration-300',
-        isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
-        'md:hidden'
+        isMenuOpen
+          ? 'opacity-100 pointer-events-auto'
+          : 'opacity-0 pointer-events-none',
+        'md:hidden',
       ]"
     >
       <ul class="flex flex-col items-center gap-10 text-2xl">
