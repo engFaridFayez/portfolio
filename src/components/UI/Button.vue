@@ -1,5 +1,5 @@
 <template>
-  <button @click="onClick" class="relative flex justify-center items-center w-[180px] h-[60px] rounded-full overflow-hidden bg-gray-700 dark:bg-white">
+  <button :type="type" @click="onClick" class="relative flex justify-center items-center w-[180px] h-[60px] rounded-full overflow-hidden bg-gray-700 dark:bg-white">
     
     <!-- Halo gradient -->
     <div class="absolute w-[200px] h-[200px] rounded-full bg-gradient-to-r from-[#00c6cc] to-[#785ae4] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-rotate"></div>
@@ -12,12 +12,18 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
 defineProps({
-    label: { type: String, default: 'Button' },
-    onClick: { type: Function, default: ()=>{} }
-})
+  label: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    default: "button", // 👈 مهم
+  },
+});
 </script>
+
 
 <style scoped>
 @keyframes rotate {

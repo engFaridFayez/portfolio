@@ -32,7 +32,10 @@
             quasi. Dolor incidunt corporis natus nihil.
           </p>
           <div class="mt-6 flex justify-center lg:justify-start">
+            <a href="#contact">
               <Button label="Hire Me" />
+            </a>
+              
             <a
               href="/cv/Farid_Fayez_CV.pdf" download
               class="font-semibold text-lg w-[10rem] h-[55px] dark:text-secondary rounded-full ml-2 border-2 dark:border-secondary hover:scale-105 transition-transform duration-300 bg-white dark:bg-transparent flex justify-center items-center text-primary border-primary"
@@ -64,7 +67,10 @@
 <script setup>
 import Button from "@/components/UI/Button.vue";
 </script>
-<style scoped>
+<style>
+html {
+  scroll-behavior: smooth;
+}
 .glass-frame {
   position: relative;
   border-radius: 24px;
