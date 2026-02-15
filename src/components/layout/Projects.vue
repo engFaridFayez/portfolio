@@ -65,8 +65,6 @@
           :description="project.description"
           :image="project.image"
           :tags="project.tags"
-          :liveLink="project.liveLink"
-          :codeLink="project.codeLink"
         />
       </swiper-slide>
 
@@ -90,7 +88,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
 
 // Import your project images (Vite alias @ → src/)
-import project1 from "@/assets/images/project1.jpg";
+import project1 from "@/assets/images/project1.png";
 import project2 from "@/assets/images/project2.jpg";
 import project3 from "@/assets/images/project3.jpg";
 import project4 from "@/assets/images/project4.jpg";
@@ -109,11 +107,11 @@ const swiperRef = ref(null);
 
 const projects = ref([
   {
-    title: "Portfolio Website",
+    title: "Akhnaton Website",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, quaerat neque porro dolorem ex adipisci laborum, dolorum ratione ullam explicabo aut ut eum accusamus cupiditate in illo magni odit ipsam!",
+      "Developed a full-stack internal system to manage company operations, integrating Django-based APIs with a Vue.js frontend to handle data management, user roles, and responsive dashboards for daily business workflows.",
     image: project1,
-    tags: ["HTML", "CSS", "Javascript"],
+    tags: ["Django", "VueJs", "MDB"],
     liveLink: "/",
     codeLink: "/",
   },
