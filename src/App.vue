@@ -7,9 +7,6 @@ const Navbar = defineAsyncComponent(
 const Hero = defineAsyncComponent(
   () => import("@/components/layout/HeroSection.vue"),
 );
-const Counter = defineAsyncComponent(
-  () => import("@/components/layout/Counter.vue"),
-);
 const Services = defineAsyncComponent(
   () => import("@/components/layout/Services.vue"),
 );
@@ -42,7 +39,6 @@ import LoadingSpinner from "@/components/layout/LoadingSpinner.vue";
         <div>
           <Navbar />
           <Hero />
-          <Counter />
           <Services />
           <Skills />
           <Whyme />
