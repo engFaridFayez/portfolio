@@ -92,6 +92,8 @@ import project1 from "@/assets/images/project1.png";
 import project2 from "@/assets/images/project2.jpg";
 import project3 from "@/assets/images/project3.jpg";
 import project4 from "@/assets/images/project4.jpg";
+import project5 from "@/assets/images/project5.png";
+import project6 from "@/assets/images/project6.png";
 
 
 const loopProjects = computed(() => {
@@ -116,19 +118,19 @@ const projects = ref([
     codeLink: "/",
   },
   {
-    title: "Portfolio Website",
+    title: "Full Stack E-Commerce Platform",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, quaerat neque porro dolorem ex adipisci laborum, dolorum ratione ullam explicabo aut ut eum accusamus cupiditate in illo magni odit ipsam!",
-    image: project2,
+      "Developed a full-stack E-Commerce web application using Django, Django REST Framework, and Vue.js with Vite.The platform provides a complete online shopping experience with secure authentication, product management, shopping cart functionality, and order processing.",
+    image: project5,
     tags: ["HTML", "CSS", "Javascript"],
     liveLink: "/",
     codeLink: "/",
   },
   {
-    title: "Portfolio Website",
+    title: "Church School Management System",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, quaerat neque porro dolorem ex adipisci laborum, dolorum ratione ullam explicabo aut ut eum accusamus cupiditate in illo magni odit ipsam!",
-    image: project3,
+      "A full-stack web application designed for managing a church school community digitally.The platform helps organize students, teachers, classes, attendance, educational materials, results, exams, and internal activities in one centralized system.",
+    image: project6,
     tags: ["HTML", "CSS", "Javascript"],
     liveLink: "/",
     codeLink: "/",
