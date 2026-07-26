@@ -61,7 +61,7 @@ onMounted(() => {
       <div class="text-3xl font-bold">
         <img
           :src="isDarkMode ? darkLogo : lightLogo"
-          class="w-[180px] h-[150px] md:w-[100px] md:h-[100px] "
+          class="h-full w-20 md:w-[100px] md:h-[100px] "
           alt="Logo"
         />
       </div>
