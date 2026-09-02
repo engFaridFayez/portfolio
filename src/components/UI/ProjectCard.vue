@@ -1,21 +1,30 @@
 <template>
   <article
-    class="max-w-sm overflow-hidden shadow-lg rounded border border-secondary dark:bg-[#ffffff29] bg-primary"
+    class="max-w-sm overflow-hidden shadow-lg rounded-xl border border-secondary dark:bg-[#ffffff29] bg-primary"
   >
-    <figure>
-      <img :src="image" :alt="title" class="w-full h-48 object-cover" />
+    <!-- Image with rounded top corners + hover zoom -->
+    <figure class="relative overflow-hidden rounded-t-xl">
+      <img
+        :src="image"
+        :alt="title"
+        class="w-full h-52 object-center transition-transform duration-500 ease-out group-hover:scale-105"
+      />
+      <!-- Gradient overlay for depth -->
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"
+      />
     </figure>
 
     <section class="px-6 py-4">
       <header>
-        <h3 class="font-bold text-xl min-2 text-white">
+        <h3 class="font-bold text-xl mb-2 text-white">
           {{ title }}
         </h3>
       </header>
-      <p class="text-gray-300 text-sm">{{ description }}</p>
+      <p class="text-gray-300 text-sm leading-relaxed">{{ description }}</p>
     </section>
 
-    <footer class="px-6 pt-4 pb-2">
+    <footer class="px-6 pt-2 pb-2">
       <ul class="flex flex-wrap gap-2">
         <li
           v-for="(tag, index) in tags"
@@ -27,10 +36,18 @@
       </ul>
     </footer>
 
-    <div class="px-6 pb-4 flex justify-between items-center">
-      <a :href="liveLink" v-if="liveLink" class="text-secondary font-semibold hover:underline text-sm">Live Demo</a>
-      <a :href="codeLink" v-if="codeLink" class="text-secondary font-semibold hover:underline text-sm">View Code</a>
-    </div>
+    <!-- <div class="px-6 pb-4 pt-3 flex justify-between items-center">
+      
+        :href="liveLink"
+        v-if="liveLink"
+        class="text-secondary font-semibold hover:underline text-sm"
+      >Live Demo</a>
+      
+        :href="codeLink"
+        v-if="codeLink"
+        class="text-secondary font-semibold hover:underline text-sm"
+      >View Code</a>
+    </div> -->
   </article>
 </template>
 <script setup>

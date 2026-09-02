@@ -60,9 +60,8 @@ onMounted(() => {
       <!-- Logo -->
       <div class="text-3xl font-bold">
         <img
-          style="border-radius: 50%;"
           :src="isDarkMode ? darkLogo : lightLogo"
-          class="w-[180px] h-[150px] md:w-[150px] md:h-[120px] rounded-4xl"
+          class="h-full w-20 md:w-[100px] md:h-[100px] "
           alt="Logo"
         />
       </div>

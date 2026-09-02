@@ -1,9 +1,9 @@
 <template>
     <section id="whyme" class="mt-32">
         <SectionHeader title="Why Me?"/>
-        <div class="grid grid-cols-1 lg:grid-cols-2 p-12 overflow-hidden">
-            <Education data-aos="fade-left"/>
-            <Experience data-aos="fade-right"/>
+        <div class="lg:grid-cols-2 p-12 overflow-hidden">
+            <Experience data-aos="fade-down"/>
+            <Education data-aos="fade-up"/>
         </div>
     </section>
 </template>

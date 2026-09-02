@@ -42,44 +42,44 @@ const services = ref([
   {
     id: 1,
     icon: "https://img.icons8.com/ios-filled/100/daed1a/google-code.png",
-    name: "Web Development",
+    name: "Full-Stack Web Development",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime, explicabo ea animi tempora earum eos ullam? Corrupti tempore officia nulla adipisci voluptate consectetur, alias at odio corporis dolor, iste sed!",
+      "Building complete web applications from scratch, handling both backend logic and frontend interfaces using modern scalable technologies.",
   },
   {
     id: 2,
     icon: "https://img.icons8.com/external-vectorslab-glyph-vectorslab/100/daed1a/external-Technical-Writing-mobile-app-development-vectorslab-glyph-vectorslab.png",
-    name: "Technical Writing",
+    name: "Backend Development & APIs",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime, explicabo ea animi tempora earum eos ullam? Corrupti tempore officia nulla adipisci voluptate consectetur, alias at odio corporis dolor, iste sed!",
+      "Developing secure, well-structured backend systems and RESTful APIs that are easy to maintain and integrate with different platforms.",
   },
   {
     id: 3,
-    icon: "https://img.icons8.com/ios-filled/100/daed1a/email-open.png",
-    name: "Technical Writing",
+    icon: "https://img.icons8.com/?size=100&id=8191&format=png&color=DAED1A",
+    name: "Frontend Development",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime, explicabo ea animi tempora earum eos ullam? Corrupti tempore officia nulla adipisci voluptate consectetur, alias at odio corporis dolor, iste sed!",
+      "Creating responsive, clean, and interactive user interfaces that focus on usability, performance, and modern design practices.",
   },
   {
     id: 4,
-    icon: "https://img.icons8.com/ios-filled/100/daed1a/email-open.png",
-    name: "Technical Writing",
+    icon: "https://img.icons8.com/?size=100&id=fncdgSAvOcfI&format=png&color=DAED1A",
+    name: "API Integration",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime, explicabo ea animi tempora earum eos ullam? Corrupti tempore officia nulla adipisci voluptate consectetur, alias at odio corporis dolor, iste sed!",
+      "Integrating third-party services and external APIs to extend application functionality and ensure smooth data communication.",
   },
   {
     id: 5,
-    icon: "https://img.icons8.com/ios-filled/100/daed1a/windows10-personalization.png",
-    name: "Technical Writing",
+    icon: "https://img.icons8.com/?size=100&id=8305&format=png&color=DAED1A",
+    name: "Database Design & Management",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime, explicabo ea animi tempora earum eos ullam? Corrupti tempore officia nulla adipisci voluptate consectetur, alias at odio corporis dolor, iste sed!",
+      "Designing efficient and reliable database structures with a strong focus on data integrity, performance, and scalability.",
   },
   {
     id: 6,
-    icon: "https://img.icons8.com/ios-filled/100/daed1a/web-design.png",
-    name: "Technical Writing",
+    icon: "https://img.icons8.com/?size=100&id=xCjyelnIlED8&format=png&color=DAED1A",
+    name: "Web Application Optimization",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime, explicabo ea animi tempora earum eos ullam? Corrupti tempore officia nulla adipisci voluptate consectetur, alias at odio corporis dolor, iste sed!",
+      "Optimizing web applications by improving performance, code quality, and overall user experience across different devices.",
   },
 ]);
 </script>

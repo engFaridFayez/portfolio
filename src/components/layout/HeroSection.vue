@@ -1,5 +1,6 @@
 <template>
-  <section data-aos="zoom-in"
+  <section
+    data-aos="zoom-in"
     class="flex justify-center items-center min-h-screen mt-20 lg:mt-0 dark:text-white"
   >
     <!-- Background effects -->
@@ -26,18 +27,18 @@
         </h1>
         <div class="flex flex-col items-start max-w-xl">
           <p class="text-lg max-w-xl mx-auto lg:mx-0 font-semibold text-left">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
-            dolorum quae temporibus voluptates ex, dolor provident facere
-            distinctio minus recusandae consequuntur explicabo eum, laudantium
-            quasi. Dolor incidunt corporis natus nihil.
+            a Full-Stack Developer specializing in <span class="text-[#125a3e]">Django</span>  and <span class="text-[#41B883]">Vue.js</span>, focused on
+            building scalable, high-performance web applications with clean,
+            maintainable code.
           </p>
           <div class="mt-6 flex justify-center lg:justify-start">
             <a href="#contact">
               <Button label="Hire Me" />
             </a>
-              
+
             <a
-              href="/cv/Farid_Fayez_CV.pdf" download
+              href="/cv/Farid_Fayez_CV.pdf"
+              download
               class="font-semibold text-lg w-[10rem] h-[55px] dark:text-secondary rounded-full ml-2 border-2 dark:border-secondary hover:scale-105 transition-transform duration-300 bg-white dark:bg-transparent flex justify-center items-center text-primary border-primary"
             >
               <Icon icon="line-md:download-loop" class="text-3xl" />
@@ -80,15 +81,9 @@ html {
   border: 7px solid transparent;
   background:
     linear-gradient(#0f172a, #0f172a) padding-box,
-    linear-gradient(
-      135deg,
-      #192942,
-      #FEF5C3,
-      #192942
-    ) border-box;
+    linear-gradient(135deg, #192942, #fef5c3, #192942) border-box;
 
-  box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 
   transition: transform 0.4s ease;
 }
@@ -105,5 +100,4 @@ html {
 .glass-frame:hover img {
   transform: scale(1.05);
 }
-
 </style>
