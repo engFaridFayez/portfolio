@@ -1,5 +1,6 @@
 <script setup>
 import portrait from '@/assets/images/image.jpeg';
+import portrait2 from '@/assets/images/image2.jpeg';
 import Icon from '@/components/UI/Icon.vue';
 import { portfolioConfig } from '@/config';
 </script>
