@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#F6F3ED" />
+    <meta name="description" content="Farid Fayez — full-stack developer specializing in Django, Vue.js, and thoughtful, high-performance web applications." />
+    <title>Farid Fayez — Full-Stack Developer</title>
+    <script>
+      try {
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.classList.add('dark');
+          document.querySelector('meta[name="theme-color"]').content = '#191D1B';
+        }
+      } catch (_) { /* The default light theme also works without storage. */ }
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

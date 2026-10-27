@@ -1,90 +1,36 @@
-<template>
-    <section class="px-4 sm:px-8 md:px-16 py-12">
-    <header class="text-center">
-      <h3 class="text-3xl sm:text-4xl font-bold text-primary dark:text-white">
-        Education
-      </h3>
-    </header>
-
-    <ul class="mt-10 space-y-6">
-      <li
-        v-for="(item, index) in Education"
-        :key="index"
-        class="w-full rounded-xl shadow-lg border bg-gradient-to-t to-[#acac39] from-[#1f1e1c99]"
-      >
-        <article
-          class="flex flex-col sm:flex-row gap-4 sm:gap-6 rounded-xl bg-primary mt-[3px] mx-[3px] p-4 sm:p-6 md:p-8"
-        >
-          <!-- ICON -->
-          <figure class="flex-shrink-0 flex justify-center sm:justify-start">
-            <Icon
-              icon="hugeicons:university"
-              class="text-4xl sm:text-5xl md:text-6xl text-secondary"
-            />
-          </figure>
-
-          <!-- CONTENT -->
-          <section class="flex-1">
-            <!-- TITLE + DATE -->
-            <div
-              class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1"
-            >
-              <h3
-                class="text-xl sm:text-2xl md:text-3xl font-bold text-secondary"
-              >
-                {{ item.Title }}
-              </h3>
-
-              <span class="text-xs sm:text-sm text-gray-300">
-                {{ item.duration }}
-              </span>
-            </div>
-
-            <!-- COMPANY + LOCATION -->
-            <div
-              class="flex flex-wrap items-center gap-2 mt-2 text-sm text-white"
-            >
-              <span class="flex items-center gap-1 font-medium text-xl"><Icon icon="mdi:school" />{{ item.company }}</span>
-              <span class="flex items-center gap-1 text-gray-300">
-                <Icon icon="mdi:map-marker" />
-                {{ item.location }}
-              </span>
-            </div>
-
-            <!-- TASKS -->
-            <ul
-              class="mt-3 space-y-1 text-sm sm:text-base text-gray-200 list-disc list-inside"
-            >
-              <li v-for="(task, i) in item.tasks" :key="i">
-                {{ task }}
-              </li>
-            </ul>
-
-            <!-- TAGS -->
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span
-                v-for="(tag, i) in item.tags"
-                :key="i"
-                class="px-3 py-1 text-xs sm:text-sm rounded-full bg-secondary/20 text-secondary border border-secondary/30"
-              >
-                {{ tag }}
-              </span>
-            </div>
-          </section>
-        </article>
-      </li>
-    </ul>
-  </section>
-</template>
 <script setup>
-import { ref } from 'vue';
+import Icon from '@/components/UI/Icon.vue';
 
-const Education=ref([
-    {
-    Title: "Computer science and artificial intelligence",
-    company: "bachelor degree",
-    location: "Helwan University",
-    duration: "06/2019 – 06/2023",
-  },
-])
+const education = {
+  title: 'Computer science and artificial intelligence',
+  qualification: 'Bachelor degree',
+  institution: 'Helwan University',
+  duration: '06/2019 – 06/2023',
+};
 </script>
+
+<template>
+  <div class="education" aria-labelledby="education-heading">
+    <h3 id="education-heading" class="column-heading"><Icon name="book" aria-hidden="true" /> Education</h3>
+    <article class="education-panel">
+      <span class="education-symbol" aria-hidden="true"><Icon name="book" /></span>
+      <p class="education-date">{{ education.duration }}</p>
+      <h4>{{ education.title }}</h4>
+      <p class="education-qualification">{{ education.qualification }}</p>
+      <p class="education-institution">{{ education.institution }}</p>
+    </article>
+  </div>
+</template>
+
+<style scoped>
+.column-heading { display: flex; align-items: center; gap: 12px; margin: 0 0 38px; color: var(--text); font-size: 13px; font-weight: 600; letter-spacing: -.015em; }
+.column-heading :deep(svg) { width: 18px; height: 18px; color: var(--accent); }
+.education-panel { border: 1px solid var(--line); background: var(--surface); padding: 32px; }
+.education-symbol { display: inline-flex; padding: 14px; margin-bottom: 36px; color: var(--accent); background: var(--accent-soft); border-radius: 50%; }
+.education-symbol :deep(svg) { width: 25px; height: 25px; stroke-width: 1.4; }
+.education-date { color: var(--accent); font-family: var(--font-mono); font-size: 10px; margin: 0 0 15px; letter-spacing: .02em; }
+.education-panel h4 { color: var(--text); font-size: 23px; line-height: 1.4; font-weight: 550; letter-spacing: -.045em; margin: 0 0 18px; }
+.education-qualification { color: var(--text-secondary); font-size: 12px; margin: 0 0 4px; }
+.education-institution { color: var(--text); font-size: 13px; line-height: 1.7; font-weight: 550; margin: 0; }
+@media (max-width: 600px) { .column-heading { margin-bottom: 26px; } .education-panel { padding: 26px; } .education-symbol { margin-bottom: 24px; } }
+</style>

@@ -1,65 +1,26 @@
 <script setup>
-import { defineAsyncComponent } from "vue";
-
-const Navbar = defineAsyncComponent(
-  () => import("@/components/layout/Navbar.vue"),
-);
-const Hero = defineAsyncComponent(
-  () => import("@/components/layout/HeroSection.vue"),
-);
-const Services = defineAsyncComponent(
-  () => import("@/components/layout/Services.vue"),
-);
-const Skills = defineAsyncComponent(
-  () => import("@/components/layout/Skills.vue"),
-);
-const Whyme = defineAsyncComponent(
-  () => import("@/components/layout/Whyme.vue"),
-);
-const Projects = defineAsyncComponent(
-  () => import("@/components/layout/Projects.vue"),
-);
-const Contact = defineAsyncComponent(
-  () => import("@/components/layout/Contact.vue"),
-);
-const Footer = defineAsyncComponent(
-  () => import("@/components/layout/Footer.vue"),
-);
-const BackToTop = defineAsyncComponent(
-  () => import("@/components/layout/BackToTop.vue"),
-);
-
-import LoadingSpinner from "@/components/layout/LoadingSpinner.vue";
+import Navbar from '@/components/layout/Navbar.vue';
+import Hero from '@/components/layout/HeroSection.vue';
+import Services from '@/components/layout/Services.vue';
+import Skills from '@/components/layout/Skills.vue';
+import Whyme from '@/components/layout/Whyme.vue';
+import Projects from '@/components/layout/Projects.vue';
+import Contact from '@/components/layout/Contact.vue';
+import Footer from '@/components/layout/Footer.vue';
+import BackToTop from '@/components/layout/BackToTop.vue';
 </script>
 
 <template>
-  <div class="bg-[#D4EBF8] dark:bg-[#091023] min-h-screen">
-    <Suspense>
-      <template #default>
-        <div>
-          <Navbar />
-          <Hero />
-          <Services />
-          <Skills />
-          <Whyme />
-          <Projects />
-          <Contact />
-          <Footer />
-          <BackToTop />
-        </div>
-      </template>
-
-      <template #fallback>
-        <div class="flex justify-center items-center min-h-screen">
-          <LoadingSpinner />
-        </div>
-      </template>
-    </Suspense>
-  </div>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <Navbar />
+  <main id="main-content">
+    <Hero />
+    <Projects />
+    <Services />
+    <Skills />
+    <Whyme />
+    <Contact />
+  </main>
+  <Footer />
+  <BackToTop />
 </template>
-<style>
-*{
-  scrollbar-width: thin;
-  scrollbar-color: #111827 #f1f1f1;
-}
-</style>

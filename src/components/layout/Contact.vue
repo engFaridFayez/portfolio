@@ -1,137 +1,259 @@
-<template>
-  <section class="mt-32" id="contact">
-    <SectionHeader title="Contact Me" />
-    <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-      <form ref="form" @submit.prevent="sendEmail" class="space-y-8">
-        <input type="hidden" name="time" :value="currentTime" />
-        <div v-for="(item, index) in inputs" :key="index">
-          <Input
-            :id="item.id"
-            :name="item.name"
-            :label="item.label"
-            :type="item.type"
-            :placeholder="item.placeholder"
-            :rows="rows"
-          />
-        </div>
-        <div class="flex justify-between">
-          <Button label="Send" type="submit"/>
-          <div class="mt-2 flex justify-center space-x-3 md:space-x-8">
-            <a href="https://x.com/faridfayez123" target="blank" class="text-gray-600 hover:text-blue-500">
-              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><g fill="currentColor"><path d="M1 2h2.5l15 20h-2.5ZM5.5 2h2.5l15 20h-2.5Z"><animate fill="freeze" attributeName="d" dur="0.4s" values="M1 2h2.5l0 0h-2.5ZM5.5 2h2.5l-0.8 0h-2.5Z;M1 2h2.5l15 20h-2.5ZM5.5 2h2.5l15 20h-2.5Z"/></path><path d="M3 2h5v0h-5ZM16 22h5v0h-5Z"><animate fill="freeze" attributeName="d" begin="0.4s" dur="0.4s" to="M3 2h5v2h-5ZM16 22h5v-2h-5Z"/></path><path d="M18.5 2h3.5l0 0h-3.5Z"><animate fill="freeze" attributeName="d" begin="0.5s" dur="0.4s" to="M18.5 2h3.5l-17 20h-3.5Z"/></path></g></svg>
-            </a>
-            <a href="https://www.linkedin.com/in/farid-faiz-9b92a9354/" target="blank" class="text-gray-600 hover:text-blue-700">
-              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 1536 1536"><path fill="currentColor" d="M237 1286h231V592H237zm246-908q-1-52-36-86t-93-34t-94.5 34t-36.5 86q0 51 35.5 85.5T351 498h1q59 0 95-34.5t36-85.5m585 908h231V888q0-154-73-233t-193-79q-136 0-209 117h2V592H595q3 66 0 694h231V898q0-38 7-56q15-35 45-59.5t74-24.5q116 0 116 157zm468-998v960q0 119-84.5 203.5T1248 1536H288q-119 0-203.5-84.5T0 1248V288Q0 169 84.5 84.5T288 0h960q119 0 203.5 84.5T1536 288"/></svg>
-            </a>
-            <a href="https://github.com/engFaridFayez" target="blank" class="text-gray-600 hover:text-gray-800">
-              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
-            </a>
-            <a href="https://www.instagram.com/farid.faiz/" target="blank" class="text-gray-600 hover:text-pink-500">
-              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><g fill="none"><path stroke="currentColor" stroke-width="2" d="M3 11c0-3.771 0-5.657 1.172-6.828S7.229 3 11 3h2c3.771 0 5.657 0 6.828 1.172S21 7.229 21 11v2c0 3.771 0 5.657-1.172 6.828S16.771 21 13 21h-2c-3.771 0-5.657 0-6.828-1.172S3 16.771 3 13z"/><circle cx="16.5" cy="7.5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></g></svg>
-            </a>
-          </div>
-        </div>
-      </form>
-    </div>
-  </section>
-  <!-- Toast -->
-<div
-  v-if="showToast"
-  class="fixed bottom-5 right-5 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-slide-in"
->
-  {{ toastMessage }}
-</div>
-</template>
 <script setup>
-import SectionHeader from "@/components/UI/SectionHeader.vue";
-import Input from "@/components/UI/Input.vue";
+import { nextTick, ref } from "vue";
+import emailjs from "@emailjs/browser";
 import Button from "@/components/UI/Button.vue";
-import { ref } from "vue";
-import emailjs from '@emailjs/browser';
+import Icon from "@/components/UI/Icon.vue";
+import Input from "@/components/UI/Input.vue";
+import { portfolioConfig } from "@/config";
 
-const currentTime = new Date().toLocaleString();
-const showToast = ref(false);
-const toastMessage = ref("");
 const form = ref(null);
+const currentTime = ref("");
+const isSubmitting = ref(false);
+const status = ref("idle");
+const statusMessage = ref("");
 
-const inputs = ref([
-  {
-    id: "name",
-    name: "name",
-    label: "Your Name",
-    type: "text",
-    placeholder: "Your full name",
-    rows: undefined,
-  },
-  {
-    id: "email",
-    name: "user_email",
-    label: "Your email",
-    type: "email",
-    placeholder: "email@example.com",
-    rows: undefined,
-  },
-  {
-    id: "message",
-    name: "message",
-    label: "Message",
-    type: "textarea",
-    placeholder: "Leave a comment",
-    rows: 6,
-  },
-]);
+const socialLinks = [
+  { name: "GitHub", icon: "github", href: "https://github.com/engFaridFayez" },
+  { name: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/in/farid-faiz-9b92a9354/" },
+  { name: "Instagram", icon: "instagram", href: "https://www.instagram.com/farid.faiz/" },
+  { name: "X / Twitter", icon: "x", href: "https://x.com/faridfayez123" },
+];
 
+async function sendEmail() {
+  if (isSubmitting.value || !form.value?.reportValidity()) return;
+  isSubmitting.value = true;
+  status.value = "sending";
+  statusMessage.value = "Sending your message…";
+  currentTime.value = new Date().toLocaleString();
 
-
-
-
-const sendEmail = () => {
-  emailjs.sendForm(
-    "service_p7il00g",
-    "template_x3yjcwm",
-    form.value,
-    {
-      publicKey: "rglDEBVBBAjYgsEnN",
-    }
-  ).then(
-    () => {
-      toastMessage.value = "Message sent successfully 🚀";
-      showToast.value = true;
-
-      // ✨ تصفير الفورم
-      form.value.reset();
-
-      // ⚡ Toast يختفي بعد 3 ثواني
-      setTimeout(() => {
-        showToast.value = false;
-      }, 3000);
-    },
-    (error) => {
-      toastMessage.value = "Something went wrong ❌";
-      showToast.value = true;
-      console.error(error);
-
-      setTimeout(() => {
-        showToast.value = false;
-      }, 3000);
-    }
-  );
-};
-</script>
-
-<style scoped>
-@keyframes slide-in {
-  0% {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
+  try {
+    await nextTick();
+    const { serviceId, templateId, publicKey } = portfolioConfig.emailjs;
+    await emailjs.sendForm(serviceId, templateId, form.value, { publicKey });
+    status.value = "success";
+    statusMessage.value = "Thank you. Your message has been sent successfully.";
+    form.value.reset();
+  } catch {
+    status.value = "error";
+    statusMessage.value = "Your message couldn’t be sent. Please try again, or reach out on LinkedIn.";
+  } finally {
+    isSubmitting.value = false;
   }
 }
+</script>
 
-.animate-slide-in {
-  animation: slide-in 0.5s ease-out;
+<template>
+  <section id="contact" class="section contact-section" aria-labelledby="contact-title">
+    <div class="container contact-layout">
+      <div class="contact-intro">
+        <p class="eyebrow">Let’s connect</p>
+        <h2 id="contact-title">Have something<br /><em>in mind?</em></h2>
+        <p class="contact-copy">
+          A project to build. A problem to solve. A role to discuss.
+          Tell me a little about it, and let’s see what we can create together.
+        </p>
+        <div class="social-block">
+          <p class="social-heading">Find me elsewhere</p>
+          <ul class="social-list" aria-label="Social profiles">
+            <li v-for="social in socialLinks" :key="social.name">
+              <a
+                :href="social.href"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-link"
+                :aria-label="`${social.name} profile (opens in a new tab)`"
+              >
+                <Icon :name="social.icon" aria-hidden="true" />
+                <span>{{ social.name }}</span>
+                <Icon name="arrow-up-right" class="social-arrow" aria-hidden="true" />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="contact-panel">
+        <div class="form-heading">
+          <span class="form-symbol" aria-hidden="true"><Icon name="mail" /></span>
+          <div>
+            <h3>Start a conversation.</h3>
+            <p>All fields are required.</p>
+          </div>
+        </div>
+        <form ref="form" class="contact-form" :aria-busy="isSubmitting" @submit.prevent="sendEmail">
+          <input type="hidden" name="time" :value="currentTime" />
+          <div class="field-row">
+            <Input
+              id="contact-name" name="name" label="Your name"
+              placeholder="Full name" autocomplete="name"
+              :maxlength="120" :readonly="isSubmitting"
+            />
+            <Input
+              id="contact-email" name="user_email" label="Email address" type="email"
+              placeholder="you@example.com" autocomplete="email"
+              :maxlength="254" :readonly="isSubmitting"
+            />
+          </div>
+          <Input
+            id="contact-message" name="message" label="What can we build together?"
+            type="textarea" placeholder="A little about your project, idea, or opportunity…"
+            :rows="5" :maxlength="6000" :readonly="isSubmitting"
+          />
+          <div class="form-actions">
+            <Button
+              type="submit" :label="isSubmitting ? 'Sending…' : 'Send message'"
+              :disabled="isSubmitting" class="send-button"
+            >
+              <span>{{ isSubmitting ? "Sending…" : "Send message" }}</span>
+              <Icon
+                :name="isSubmitting ? 'loader' : 'arrow-up-right'"
+                :class="{ 'sending-icon': isSubmitting }" aria-hidden="true"
+              />
+            </Button>
+          </div>
+          <div class="status-region" aria-live="polite" aria-atomic="true">
+            <p v-if="statusMessage" class="form-status" :class="`is-${status}`">
+              <Icon v-if="status === 'success'" name="check" aria-hidden="true" />
+              <span>{{ statusMessage }}</span>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</template>
+
+<style scoped>
+.contact-section { border-top: 1px solid var(--line); }
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: start;
+}
+.contact-intro { padding-top: 0.5rem; }
+.contact-intro h2 {
+  margin: 1.6rem 0 1.7rem;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: clamp(2.7rem, 4.7vw, 4.6rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1.06;
+}
+.contact-intro h2 em {
+  color: var(--accent);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+.contact-copy {
+  max-width: 24rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.85;
+}
+.social-block { margin-top: 3rem; max-width: 25rem; }
+.social-heading {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.social-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 1.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 3.35rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+.social-link > svg { width: 1rem; height: 1rem; flex: 0 0 auto; }
+.social-link .social-arrow {
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-left: auto;
+  color: var(--muted);
+  transition: transform 180ms ease;
+}
+.social-link:hover { border-color: var(--accent); color: var(--accent); }
+.social-link:hover .social-arrow { transform: translate(2px, -2px); color: var(--accent); }
+.social-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.contact-panel {
+  padding: clamp(1.5rem, 3.2vw, 2.65rem);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.form-heading { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+.form-symbol {
+  display: grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.form-symbol svg { width: 1.2rem; height: 1.2rem; }
+.form-heading h3 {
+  margin: 0 0 0.3rem;
+  color: var(--text);
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.4;
+}
+.form-heading p { margin: 0; color: var(--muted); font-size: 0.75rem; line-height: 1.5; }
+.contact-form { display: grid; gap: 1.4rem; }
+.field-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.form-actions { display: flex; margin-top: 0.15rem; }
+.send-button { width: 100%; justify-content: space-between; }
+.send-button > svg { width: 1.1rem; height: 1.1rem; }
+.status-region { margin-top: -1.4rem; }
+.form-status {
+  display: flex;
+  align-items: start;
+  gap: 0.5rem;
+  margin: 0;
+  padding-top: 1.4rem;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+.form-status > svg { width: 1rem; height: 1rem; flex: 0 0 auto; margin-top: 0.15rem; }
+.form-status.is-success { color: var(--success); }
+.form-status.is-error { color: var(--error); }
+.sending-icon { animation: sending 1.1s linear infinite; }
+@keyframes sending { to { transform: rotate(360deg); } }
+@media (max-width: 800px) {
+  .contact-layout { grid-template-columns: 1fr; gap: 2.75rem; }
+  .contact-intro h2 { font-size: clamp(2.8rem, 7.8vw, 4rem); }
+  .contact-copy { max-width: 34rem; }
+  .social-block { margin-top: 2rem; }
+}
+@media (max-width: 480px) {
+  .field-row { grid-template-columns: 1fr; gap: 1.4rem; }
+  .contact-panel { padding: 1.35rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .social-link, .social-link .social-arrow { transition: none; }
+  .sending-icon { animation: none; }
 }
 </style>

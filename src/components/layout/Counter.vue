@@ -1,63 +1,29 @@
-<template>
-  <section>
-    <!-- Background effects -->
-    <header
-      class="absolute w-1/2 aspect-[16/5] -skew-x-12 rounded-full bg-gradient-to-r from-[#00c6cc] via-[#785ae4] to-secondary opacity-30 dark:opacity-20 blur-[100px] left-10 top-0 hidden md:block"
-    ></header>
-    <header
-      class="absolute w-1/2 aspect-[16/5] -skew-x-12 rounded-full bg-gradient-to-r from-[#00c6cc] via-[#785ae4] to-secondary opacity-30 dark:opacity-20 blur-[100px] right-10 bottom-0 hidden md:block"
-    ></header>
+<script setup>
+// Original values retained. This optional component is not mounted in App.vue.
+const numbers = [
+  { id: 1, number: 12, title: 'Created Projects' },
+  { id: 2, number: 200, title: 'Projects' },
+  { id: 3, number: 120, title: 'Happy Clients' },
+  { id: 4, number: 3, title: 'Years' },
+];
+</script>
 
-    <ul
-      ref="statsSection"
-      class="relative z-10 p-6 mx-auto w-11/12 rounded-3xl border dark:bg-[#fffcfc26] bg-primary shadow-lg md:divide-x grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 lg:gap-12 border-secondary"
-    >
-      <!-- removed lg:mx-0 -->
-      <li class="text-center" v-for="item in numbers" :key="item.id">
-        <h2
-          class="font-semibold flex justify-center text-xl sm:text-2xl md:text-4xl w-full text-white dark:text-secondary"
-        >
-          +
-          <Countup
-            v-if="hasIntersected"
-            :end-val="item.number"
-            :delay="5"
-            :duration="20"
-          />
-        </h2>
-        <p class="mt-2 text-white dark:text-secondary">{{ item.title }}</p>
-      </li>
+<template>
+  <div class="counter-band">
+    <ul class="container counter-list">
+      <li v-for="item in numbers" :key="item.id"><span class="counter-value">{{ item.number }}<span>+</span></span><span class="counter-label">{{ item.title }}</span></li>
     </ul>
-  </section>
+  </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from "vue";
-import Countup from "vue-countup-v3";
-
-const numbers = ref([
-  { id: 1, number: 12, title: "Created Projects" },
-  { id: 2, number: 200, title: "Projects" },
-  { id: 3, number: 120, title: "Happy Clients" },
-  { id: 4, number: 3, title: "Years" },
-]);
-
-const statsSection = ref(null);
-const hasIntersected = ref(false);
-
-onMounted(() => {
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        hasIntersected.value = true;
-        observer.disconnect(); // لازم هنا ()
-      }
-    },
-    { threshold: 0.5 },
-  );
-
-  if (statsSection.value) {
-    observer.observe(statsSection.value);
-  }
-});
-</script>
+<style scoped>
+.counter-band { background: var(--surface-muted); border-block: 1px solid var(--line); padding: 32px 0; }
+.counter-list { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding-block: 0; }
+.counter-list li { display: flex; flex-direction: column; gap: 10px; align-items: center; padding: 16px 20px; border-right: 1px solid var(--line); }
+.counter-list li:last-child { border: 0; }
+.counter-value { color: var(--text); font-size: 40px; font-weight: 550; letter-spacing: -.06em; }
+.counter-value > span { color: var(--accent); font-size: 24px; margin-left: 3px; }
+.counter-label { color: var(--text-secondary); font-size: 11px; }
+@media (max-width: 700px) { .counter-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 0; } .counter-list li:nth-child(even) { border: 0; } }
+@media (max-width: 400px) { .counter-value { font-size: 32px; } .counter-list li { padding-inline: 10px; } }
+</style>
