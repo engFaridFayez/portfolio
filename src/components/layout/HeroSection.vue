@@ -1,6 +1,8 @@
 <script setup>
 import portrait from '@/assets/images/image.jpeg';
 import portrait2 from '@/assets/images/image2.jpeg';
+import portrait3 from '@/assets/images/image3.jpeg';
+import portrait4 from '@/assets/images/image4.jpeg';
 import Icon from '@/components/UI/Icon.vue';
 import { portfolioConfig } from '@/config';
 </script>
@@ -27,7 +29,7 @@ import { portfolioConfig } from '@/config';
       <div class="hero-visual">
         <div class="portrait-index" aria-hidden="true"><span>F / F</span><span>DEVELOPER PORTFOLIO</span></div>
         <figure class="portrait-frame">
-          <img :src="portrait" width="896" height="1000" alt="Farid Fayez" fetchpriority="high" />
+          <img :src="portrait4" width="896" height="1000" alt="Farid Fayez" fetchpriority="high" />
           <figcaption>
             <span>Farid Fayez</span>
             <span>Developer &amp; problem solver</span>
