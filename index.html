@@ -1,20 +1,71 @@
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <meta name="theme-color" content="#F6F3ED" />
-    <meta name="description" content="Farid Fayez — full-stack developer specializing in Django, Vue.js, and thoughtful, high-performance web applications." />
+
+    <!-- SEO -->
+    <meta
+      name="description"
+      content="Farid Fayez — full-stack developer specializing in Django, Vue.js, and thoughtful, high-performance web applications."
+    />
+
     <title>Farid Fayez — Full-Stack Developer</title>
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Farid Fayez Portfolio" />
+    <meta
+      property="og:title"
+      content="Farid Fayez — Full-Stack Developer"
+    />
+    <meta
+      property="og:description"
+      content="Full-Stack Developer specializing in Django, Django REST Framework, Vue.js, and building modern web applications."
+    />
+    <meta
+      property="og:url"
+      content="https://faridfayez.tech/"
+    />
+    <meta
+      property="og:image"
+      content="https://faridfayez.tech/og-image.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Farid Fayez — Full-Stack Developer" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Farid Fayez — Full-Stack Developer"
+    />
+    <meta
+      name="twitter:description"
+      content="Building modern web applications with Django, DRF, and Vue.js."
+    />
+    <meta
+      name="twitter:image"
+      content="https://faridfayez.tech/og-image.jpg"
+    />
+
+    <!-- Theme -->
     <script>
       try {
         if (localStorage.getItem('theme') === 'dark') {
           document.documentElement.classList.add('dark');
           document.querySelector('meta[name="theme-color"]').content = '#191D1B';
         }
-      } catch (_) { /* The default light theme also works without storage. */ }
+      } catch (_) {
+        /* The default light theme also works without storage. */
+      }
     </script>
   </head>
+
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
