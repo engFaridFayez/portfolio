@@ -4,8 +4,8 @@ export const portfolioConfig = {
   resumeUrl: '',
   emailjs: {
     // Retained from the supplied source. EmailJS public keys are client-side IDs.
-    serviceId: 'service_p7il00g',
-    templateId: 'template_x3yjcwm',
+    serviceId: 'service_m2bvk0u',
+    templateId: 'template_glj0ntw',
     publicKey: 'rglDEBVBBAjYgsEnN',
   },
 };

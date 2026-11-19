@@ -82,6 +82,7 @@ async function sendEmail() {
         </div>
         <form ref="form" class="contact-form" :aria-busy="isSubmitting" @submit.prevent="sendEmail">
           <input type="hidden" name="time" :value="currentTime" />
+          <input type="hidden" name="title" value="Portfolio Contact Form" />
           <div class="field-row">
             <Input
               id="contact-name" name="name" label="Your name"
@@ -89,7 +90,7 @@ async function sendEmail() {
               :maxlength="120" :readonly="isSubmitting"
             />
             <Input
-              id="contact-email" name="user_email" label="Email address" type="email"
+              id="contact-email" name="email" label="Email address" type="email"
               placeholder="you@example.com" autocomplete="email"
               :maxlength="254" :readonly="isSubmitting"
             />
